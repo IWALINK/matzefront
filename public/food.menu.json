@@ -1,0 +1,326 @@
+[
+  {
+    "category": "Spécialités de saison",
+    "title": "Charbonade",
+    "description": "Charcoal grill (per person)",
+    "price": "42.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Fondue chinoise",
+    "description": "Chinese fondue (per person)",
+    "price": "42.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Fondue bourguignonne",
+    "description": "Meat fondue (bourguignonne, per person)",
+    "price": "42.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Fondue au fromage (Moitié-moitié)",
+    "description": "Cheese fondue",
+    "price": "24.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Fondue aux Bolets",
+    "description": "Cheese fondue (with mushrooms)",
+    "price": "26.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Raclette",
+    "description": "Melted cheese",
+    "price": "24.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Le poulet de Perly à la broche (1/2)",
+    "description": "Chicken with provençal herbs (half)",
+    "price": "20.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Le poulet de Perly à la broche (entier)",
+    "description": "Chicken with provençal herbs (whole)",
+    "price": "35.00"
+  },
+  {
+    "category": "Spécialités de saison",
+    "title": "Filets de perches",
+    "description": "Perch fillets, homemade fries tartar sauce",
+    "price": "32.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Salade verte",
+    "description": "Green salad",
+    "price": "6.50"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Salade mêlée",
+    "description": "Mixed salad",
+    "price": "8.50"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Salade de tomate, mozzarella et basilic",
+    "description": "Tomatoes, mozzarella salad and basilic",
+    "price": "17.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Salade valaisanne",
+    "description": "Valaisanne salad",
+    "price": "18.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Assiette Valaisanne",
+    "description": "Valaisanne plat",
+    "price": "24.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Jambon cru d’Italie",
+    "description": "Raw Italian ham",
+    "price": "26.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Viande séchée",
+    "description": "Air cured beef",
+    "price": "26.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Carpaccio de bœuf",
+    "description": "Beef carpaccio",
+    "price": "25.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Cocktail de crevettes",
+    "description": "Shrimps cocktail",
+    "price": "18.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Escargots, la douzaine",
+    "description": "Snails, dozen",
+    "price": "22.00"
+  },
+  {
+    "category": "Salades et mets froids",
+    "title": "Escargots, six",
+    "description": "Snails, six",
+    "price": "13.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Spaghetti napolitaine",
+    "description": "Spaghetti with tomato sauce",
+    "price": "18.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Spaghetti au basilic et à l’ail",
+    "description": "Spaghetti with basilica leaf and garlic",
+    "price": "18.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Penne gorgonzola",
+    "description": "Penne with gorgonzola sauce",
+    "price": "21.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Spaghetti alla carbonara",
+    "description": "Spaghetti with bacon and cream",
+    "price": "21.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Spaghetti bolognaise",
+    "description": "Spaghetti with meat and tomato sauce",
+    "price": "21.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Penne all’ arrabiata",
+    "description": "Penne with pimento tomato sauce",
+    "price": "19.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Tagliatelles au saumon et crevettes",
+    "description": "Tagliatelles with salmon and shrimps",
+    "price": "22.00"
+  },
+  {
+    "category": "Pâtes",
+    "title": "Lasagne au four",
+    "description": "Baked lasagna",
+    "price": "21.50"
+  },
+  {
+    "category": "Soupes",
+    "title": "Consommé à l’œuf",
+    "description": "Clear beef soup with egg",
+    "price": "8.00"
+  },
+  {
+    "category": "Soupes",
+    "title": "Minestrone maison",
+    "description": "Minestrone soup",
+    "price": "9.50"
+  },
+  {
+    "category": "Soupes",
+    "title": "Soupe de poisson",
+    "description": "Fish soup",
+    "price": "13.00"
+  },
+  {
+    "category": "Poissons",
+    "title": "Filets de perches",
+    "description": "Fillets of perch",
+    "price": "32.00"
+  },
+  {
+    "category": "Poissons",
+    "title": "La sole grillée ou meunière",
+    "description": "Grilled sole or fried sole",
+    "price": "42.00"
+  },
+  {
+    "category": "Poissons",
+    "title": "Crevettes géantes grillées ou à l’ail",
+    "description": "Grilled shrimps or garlic shrimps",
+    "price": "39.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Filets de bœuf grillé",
+    "description": "Grilled tenderloin beef",
+    "price": "39.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Filet de bœuf sauce matze ou au poivre",
+    "description": "Tenderloin beef with matze sauce or with pepper sauce",
+    "price": "41.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Entrecôte de bœuf grillée",
+    "description": "Grilled sirloin beef",
+    "price": "35.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Entrecôte de bœuf sauce poivre ou sauce matze",
+    "description": "Sirloin beef with matze butter or pepper sauce",
+    "price": "37.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Steak de bœuf grillée sauce au poivre ou sauce matze",
+    "description": "Grilled beef steak with pepper sauce or matze butter",
+    "price": "23.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Scaloppine de veau au citron vert",
+    "description": "Veal scallop with lemon sauce",
+    "price": "35.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Escalope de veau viennoise",
+    "description": "Wiener Schnitzel (breaded veal slice)",
+    "price": "36.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Emincé de veau zurichois",
+    "description": "Chipped veal with cream sauce",
+    "price": "35.00"
+  },
+  {
+    "category": "Viandes",
+    "title": "Côtes d’agneau grillées aux herbes",
+    "description": "Grilled lamb chops",
+    "price": "32.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Marguerita",
+    "description": "Tomato, mozzarella and oregano",
+    "price": "16.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Napolitaine",
+    "description": "Tomato, mozzarella, anchovies, capers, olives and oregano",
+    "price": "17.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Quatre Saisons",
+    "description": "Tomato, mozzarella, ham, peppers, mushrooms, anchovies, oregano",
+    "price": "18.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Capriciosa",
+    "description": "Tomato, mozzarella, egg, mushrooms, olives, oregano",
+    "price": "18.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Romana",
+    "description": "Tomato, mozzarella, oregano and raw ham",
+    "price": "24.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Diabolo",
+    "description": "Tomato, mozzarella, pimento chorizo, oregano",
+    "price": "18.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Rouquette",
+    "description": "Tomato, mozzarella, rocket, oregano, parmesan shavings",
+    "price": "20.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Matze",
+    "description": "Tomato, mozzarella, eggplant, zucchini, mushrooms, onions, oregano, raw ham",
+    "price": "24.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Nordique",
+    "description": "Tomato, mozzarella, salmon, shrimps, oregano",
+    "price": "22.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Vegetarienne",
+    "description": "Tomato, mozzarella, eggplant, zucchini, onions",
+    "price": "18.00"
+  },
+  {
+    "category": "Pizzas",
+    "title": "Quatre Fromages",
+    "description": "Tomato, gorgonzola, mozzarella, gruyère, ricotta",
+    "price": "19.00"
+  }
+]
