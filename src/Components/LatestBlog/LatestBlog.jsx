@@ -62,8 +62,8 @@ const LatestBlog = () => {
                 >
                   <div className="relative">
                     <img
-                      src="/images/home-1/gal_1.png"
-                      className="w-full h-full object-cover h-[300px]"
+                      src="/images/home-1/gal_1.JPG"
+                      className="w-full object-cover h-[300px]"
                       alt=""
                     />
                   </div>
@@ -100,7 +100,7 @@ const LatestBlog = () => {
                   <div className="relative">
                     <img
                       src="/images/home-1/gal_2.png"
-                      className="w-full h-full object-cover h-[300px]"
+                      className="w-full object-cover h-[300px]"
                       alt=""
                     />
                   </div>
@@ -137,7 +137,7 @@ const LatestBlog = () => {
                   <div className="relative">
                     <img
                       src="/images/home-1/gal_3.png"
-                      className="w-full h-full object-cover h-[300px]"
+                      className="w-full object-cover h-[300px]"
                       alt=""
                     />
                   </div>
