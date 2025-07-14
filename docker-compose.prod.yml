@@ -7,7 +7,7 @@ services:
     container_name: nginx-proxy-prod
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8083:80:80"
     volumes:
       - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
       - ./logs/nginx-prod:/var/log/nginx
