@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Reverse proxy Nginx for development
+  nginx-proxy-dev:
+    image: nginx:alpine
+    container_name: nginx-proxy-dev
+    restart: unless-stopped
+    ports:
+      - "8080:80"  # Different port for dev
+    volumes:
+      - ./nginx-proxy-dev.conf:/etc/nginx/nginx.conf:ro
+      - ./logs/nginx-dev:/var/log/nginx
+    networks:
+      - royella-dev-network
+    depends_on:
+      - royella-app-dev
+
+  # Application Royella (Frontend) - Development
+  royella-app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: royella-app-dev
+    restart: unless-stopped
+    expose:
+      - "3000"  # Vite dev server port
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:3000
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - ./src:/app/src:ro  # Mount source code for hot reload
+      - ./public:/app/public:ro
+      - ./package.json:/app/package.json:ro
+      - ./vite.config.js:/app/vite.config.js:ro
+      - ./tailwind.config.js:/app/tailwind.config.js:ro
+      - ./postcss.config.js:/app/postcss.config.js:ro
+      - nginx_logs_dev:/var/log/nginx
+    networks:
+      - royella-dev-network
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+volumes:
+  nginx_logs_dev:
+    driver: local
+
+networks:
+  royella-dev-network:
+    driver: bridge 

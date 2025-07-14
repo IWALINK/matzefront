@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Reverse proxy Nginx for production
+  nginx-proxy-prod:
+    image: nginx:alpine
+    container_name: nginx-proxy-prod
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+      - ./logs/nginx-prod:/var/log/nginx
+    networks:
+      - royella-prod-network
+    depends_on:
+      - royella-app-prod
+
+  # Application Royella (Frontend) - Production
+  royella-app-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: royella-app-prod
+    restart: unless-stopped
+    expose:
+      - "80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - nginx_logs_prod:/var/log/nginx
+    networks:
+      - royella-prod-network
+
+volumes:
+  nginx_logs_prod:
+    driver: local
+
+networks:
+  royella-prod-network:
+    driver: bridge 

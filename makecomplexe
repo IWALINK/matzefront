@@ -1,0 +1,194 @@
+# Variables
+PROJECT_NAME = royella-app
+CONTAINER_NAME = royella-container
+COMPOSE_FILE = docker-compose.yml
+
+# Couleurs pour les messages
+GREEN = \033[0;32m
+YELLOW = \033[1;33m
+RED = \033[0;31m
+NC = \033[0m # No Color
+
+# Commandes principales
+.PHONY: help build up down start stop restart logs clean clean-all shell health status
+
+# Aide par défaut
+help: ## Afficher cette aide
+	@echo "$(GREEN)Commandes disponibles pour Royella:$(NC)"
+	@echo ""
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(YELLOW)%-15s$(NC) %s\n", $$1, $$2}'
+	@echo ""
+
+# Construction et déploiement
+build: ## Construire l'image Docker
+	@echo "$(GREEN)Construction de l'image Docker...$(NC)"
+	docker-compose build
+
+up: ## Démarrer l'application en arrière-plan
+	@echo "$(GREEN)Démarrage de l'application...$(NC)"
+	docker-compose up -d
+
+start: up ## Alias pour up
+
+dev: ## Démarrer en mode développement (avec logs)
+	@echo "$(GREEN)Démarrage en mode développement...$(NC)"
+	docker-compose up
+
+# Arrêt et nettoyage
+down: ## Arrêter l'application
+	@echo "$(YELLOW)Arrêt de l'application...$(NC)"
+	docker-compose down
+
+stop: down ## Alias pour down
+
+restart: down up ## Redémarrer l'application
+
+# Logs et monitoring
+logs: ## Afficher les logs en temps réel
+	@echo "$(GREEN)Affichage des logs...$(NC)"
+	docker-compose logs -f
+
+logs-app: ## Afficher les logs de l'application uniquement
+	@echo "$(GREEN)Logs de l'application...$(NC)"
+	docker-compose logs -f royella-app
+
+# Nettoyage
+clean: ## Nettoyer les conteneurs et images non utilisés
+	@echo "$(YELLOW)Nettoyage des conteneurs et images...$(NC)"
+	docker system prune -f
+
+clean-all: ## Nettoyage complet (conteneurs, images, volumes)
+	@echo "$(RED)Nettoyage complet...$(NC)"
+	docker system prune -a -f --volumes
+
+# Utilitaires
+shell: ## Ouvrir un shell dans le conteneur
+	@echo "$(GREEN)Ouverture du shell...$(NC)"
+	docker-compose exec royella-app sh
+
+health: ## Vérifier la santé de l'application
+	@echo "$(GREEN)Vérification de la santé...$(NC)"
+	@curl -f http://localhost/health || echo "$(RED)Application non accessible$(NC)"
+
+status: ## Afficher le statut des conteneurs
+	@echo "$(GREEN)Statut des conteneurs:$(NC)"
+	docker-compose ps
+
+# Construction manuelle
+build-manual: ## Construction manuelle avec Docker
+	@echo "$(GREEN)Construction manuelle...$(NC)"
+	docker build -t $(PROJECT_NAME) .
+
+run-manual: build-manual ## Construire et exécuter manuellement
+	@echo "$(GREEN)Démarrage manuel...$(NC)"
+	docker run -d -p 80:80 --name $(CONTAINER_NAME) $(PROJECT_NAME)
+
+stop-manual: ## Arrêter le conteneur manuel
+	@echo "$(YELLOW)Arrêt du conteneur manuel...$(NC)"
+	docker stop $(CONTAINER_NAME) || true
+	docker rm $(CONTAINER_NAME) || true
+
+# Déploiement
+deploy: build up ## Construire et déployer
+	@echo "$(GREEN)Déploiement terminé!$(NC)"
+	@echo "$(GREEN)Application accessible sur: http://localhost$(NC)"
+
+# Développement
+dev-build: ## Construction pour développement
+	@echo "$(GREEN)Construction pour développement...$(NC)"
+	docker-compose build --no-cache
+
+dev-up: dev-build dev ## Construction et démarrage en mode dev
+
+# Production
+prod-build: ## Construction optimisée pour production
+	@echo "$(GREEN)Construction pour production...$(NC)"
+	docker-compose -f $(COMPOSE_FILE) build --no-cache
+
+prod-deploy: prod-build up ## Déploiement production
+
+# Maintenance
+backup-logs: ## Sauvegarder les logs
+	@echo "$(GREEN)Sauvegarde des logs...$(NC)"
+	@mkdir -p backups
+	docker-compose logs royella-app > backups/logs-$(shell date +%Y%m%d-%H%M%S).log
+
+update: down build up ## Mettre à jour l'application
+	@echo "$(GREEN)Mise à jour terminée!$(NC)"
+
+# Informations
+info: ## Afficher les informations du projet
+	@echo "$(GREEN)Informations du projet Royella:$(NC)"
+	@echo "  - Nom du projet: $(PROJECT_NAME)"
+	@echo "  - Port: 80"
+	@echo "  - URL: http://localhost"
+	@echo "  - Health check: http://localhost/health"
+
+# Vérifications
+check-docker: ## Vérifier que Docker est installé
+	@echo "$(GREEN)Vérification de Docker...$(NC)"
+	@docker --version || (echo "$(RED)Docker n'est pas installé$(NC)" && exit 1)
+
+check-compose: ## Vérifier que Docker Compose est installé
+	@echo "$(GREEN)Vérification de Docker Compose...$(NC)"
+	@docker-compose --version || (echo "$(RED)Docker Compose n'est pas installé$(NC)" && exit 1)
+
+check: check-docker check-compose ## Vérifier les prérequis
+	@echo "$(GREEN)Tous les prérequis sont satisfaits!$(NC)"
+
+# Installation (pour Linux)
+install-docker: ## Installer Docker sur Ubuntu/Debian
+	@echo "$(GREEN)Installation de Docker...$(NC)"
+	sudo apt update
+	sudo apt install -y docker.io docker-compose
+	sudo usermod -aG docker $$USER
+	@echo "$(YELLOW)Veuillez vous reconnecter pour que les changements prennent effet$(NC)"
+
+# Commandes de développement avancées
+lint: ## Lancer le linter
+	@echo "$(GREEN)Exécution du linter...$(NC)"
+	docker-compose run --rm royella-app npm run lint
+
+test: ## Lancer les tests
+	@echo "$(GREEN)Exécution des tests...$(NC)"
+	docker-compose run --rm royella-app npm test
+
+# Commandes de débogage
+debug: ## Mode debug avec plus de verbosité
+	@echo "$(GREEN)Mode debug activé...$(NC)"
+	docker-compose up --build --force-recreate
+
+inspect: ## Inspecter le conteneur
+	@echo "$(GREEN)Inspection du conteneur...$(NC)"
+	docker-compose exec royella-app nginx -t
+
+# Commandes de monitoring
+monitor: ## Monitoring en temps réel
+	@echo "$(GREEN)Monitoring en temps réel...$(NC)"
+	@echo "$(YELLOW)Appuyez sur Ctrl+C pour arrêter$(NC)"
+	watch -n 2 'docker stats --no-stream'
+
+# Commandes de sauvegarde
+backup: ## Sauvegarder l'état actuel
+	@echo "$(GREEN)Sauvegarde...$(NC)"
+	@mkdir -p backups
+	docker-compose ps > backups/status-$(shell date +%Y%m%d-%H%M%S).txt
+	docker-compose logs > backups/full-logs-$(shell date +%Y%m%d-%H%M%S).txt
+
+# Commandes de restauration
+restore: ## Restaurer depuis une sauvegarde (à implémenter selon vos besoins)
+	@echo "$(YELLOW)Fonction de restauration à implémenter$(NC)"
+
+# Aide contextuelle
+quick-start: check deploy info ## Démarrage rapide complet
+	@echo "$(GREEN)Démarrage rapide terminé!$(NC)"
+
+# Commandes de développement local
+local-dev: ## Démarrage pour développement local
+	@echo "$(GREEN)Démarrage en mode développement local...$(NC)"
+	npm install
+	npm run dev
+
+# Commandes de production
+prod-setup: check prod-deploy info ## Configuration complète pour production
+	@echo "$(GREEN)Configuration production terminée!$(NC)" 
