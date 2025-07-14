@@ -7,7 +7,7 @@ services:
     container_name: nginx-proxy-prod
     restart: unless-stopped
     ports:
-      - "8083:80:80"
+      - "8001:80"
     volumes:
       - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
       - ./logs/nginx-prod:/var/log/nginx
@@ -24,7 +24,7 @@ services:
     container_name: royella-app-prod
     restart: unless-stopped
     expose:
-      - "80"
+      - "8001"
     environment:
       - NODE_ENV=production
     healthcheck:
