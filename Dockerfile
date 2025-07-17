@@ -32,11 +32,12 @@
 # CMD ["nginx", "-g", "daemon off;"] 
 
 
-# Stage 1: Dependencies
+
+# Stage 1: Dependencies (including dev dependencies for build)
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+RUN npm ci
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
@@ -70,5 +71,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost:$PORT/ || exit 1
 
 EXPOSE 3000
-CMD ["npm", "start"]
-# CMD ["./start.sh"]
+CMD ["./start.sh"]
