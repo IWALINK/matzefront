@@ -10,7 +10,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./logs/nginx-prod:/var/log/nginx
-      - ./docker/ssl:/etc/nginx/ssl  # SSL certificates volume
+      - ./docker/nginx/ssl:/etc/nginx/ssl  # SSL certificates volume
     networks:
       - royella-prod-network
     depends_on:
