@@ -2,6 +2,9 @@ services:
   # Reverse proxy Nginx for production
   nginx-proxy-prod:
     image: nginx:alpine
+    secrets:
+      - ssl_key
+      - ssl_chain
     container_name: nginx-proxy-prod
     restart: unless-stopped
     ports:
@@ -15,6 +18,11 @@ services:
       - royella-prod-network
     depends_on:
       - royella-app-prod
+  secrets:
+    ssl_key:
+      file: ./docker/nginx/ssl/privkey.pem
+    ssl_chain:
+      file: ./docker/nginx/ssl/fullchain.pem
 
   # Application Royella (Frontend) - Production
   royella-app-prod:
