@@ -5,7 +5,7 @@ services:
     container_name: nginx-proxy-prod
     restart: unless-stopped
     ports:
-      - "3004:3000"
+      - "3001:3001"
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
@@ -24,7 +24,7 @@ services:
     container_name: royella-app-prod
     restart: unless-stopped
     expose:
-      - "3000"
+      - "3001"
     environment:
       - NODE_ENV=production
     healthcheck:
