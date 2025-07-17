@@ -25,7 +25,6 @@ services:
     restart: unless-stopped
     expose:
       - "80"
-      - "443"
     environment:
       - NODE_ENV=production
     healthcheck:
