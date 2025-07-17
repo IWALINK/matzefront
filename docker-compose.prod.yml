@@ -13,16 +13,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./logs/nginx-prod:/var/log/nginx
-      - ./docker/nginx/ssl:/etc/nginx/ssl  # SSL certificates volume
     networks:
       - royella-prod-network
     depends_on:
       - royella-app-prod
-  secrets:
-    ssl_key:
-      file: ./docker/nginx/ssl/privkey.pem
-    ssl_chain:
-      file: ./docker/nginx/ssl/fullchain.pem
 
   # Application Royella (Frontend) - Production
   royella-app-prod:
@@ -53,4 +47,10 @@ volumes:
 
 networks:
   royella-prod-network:
-    driver: bridge 
+    driver: bridge
+
+secrets:
+  ssl_key:
+    file: ./docker/nginx/ssl/privkey.pem
+  ssl_chain:
+    file: ./docker/nginx/ssl/fullchain.pem
