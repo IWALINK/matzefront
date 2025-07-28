@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const Menu = () => {
     const [menu, setMenu] = useState([]);
     const [showItem, setShowItem] = useState([]);
-    const [activeCategory, setActiveCategory] = useState("Spécialités de saison");
+    const [activeCategory, setActiveCategory] = useState("Nos Spécialités");
 
     useEffect(() => {
         fetch("/food.menu.json")
@@ -11,7 +11,7 @@ const Menu = () => {
             .then((data) => {
                 setMenu(data);
                 // Afficher uniquement la première catégorie au chargement
-                const firstCategory = "Spécialités de saison";
+                const firstCategory = "Nos Spécialités";
                 const filtered = data.filter(item => item.category === firstCategory);
                 setShowItem(filtered);
             });
@@ -19,13 +19,12 @@ const Menu = () => {
 
     // Liste des catégories dans l'ordre d'affichage
     const categories = [
-        "Spécialités de saison",
-        "Salades et mets froids",
-        "Pâtes",
-        "Soupes",
-        "Poissons",
-        "Viandes",
-        "Pizzas"
+        "Nos Spécialités",
+        "Nos Viandes",
+        "Nos Poissons",
+        "Nos Pâtes",
+        "Nos Entrées & Salades",
+        "Nos Pizzas"
     ];
 
     return (
