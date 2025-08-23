@@ -36,7 +36,7 @@ const HotelAndResort = () => {
               <div className="">
                 <img
                   src="/images/home-1/presentation_1.JPG"
-                  className="h-[100%] lg:h-[100%] rounded-lg"
+                  className="rounded-lg object-cover"
                   alt="Hotel-slider-image"
                 />
               </div>

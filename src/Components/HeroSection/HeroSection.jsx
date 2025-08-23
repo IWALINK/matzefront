@@ -29,7 +29,7 @@ const HeroSection = () => {
         {/* slider 1  Pagination  Navigation,*/}
         <SwiperSlide>
           <div
-            className="bg-[url('/images/home-1/LaMatzeTerrass.png')] w-full h-[700px] md:h-[800px] xl:h-[850px] 3xl:h-[950px] bg-cover bg-center relative pb-[150px] lg:pb-16 xl:pb-0"
+            className="bg-[url('/images/home-1/terre.jpg')] w-full h-[700px] md:h-[800px] xl:h-[850px] 3xl:h-[950px] bg-cover bg-center relative pb-[150px] lg:pb-16 xl:pb-0"
             data-aos="fade-down"
           >
             {/* Overlay avec light khaki plus clair */}

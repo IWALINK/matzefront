@@ -36,7 +36,7 @@ const Facilities = () => {
           >
             <div className="relative w-full h-[100%] md:pr-[30px]">
               <img
-                src="/images/home-1/cuisine_1.png"
+                src="/images/home-1/terre2.png"
                 alt=""
                 className="w-full h-full rounded-lg"
               />

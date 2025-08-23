@@ -1,38 +1,23 @@
-FROM node:20-alpine AS deps
+# Development Dockerfile for Vite project
+FROM node:20-alpine
+
 WORKDIR /app
+
+# Copy package files first for better caching
 COPY package.json package-lock.json* ./
+
+# Install dependencies
 RUN npm ci
 
-# Stage 2: Builder
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+# Copy source code
 COPY . .
-RUN npm run build
 
-# Stage 3: Production runner with static file server
-FROM node:20-alpine AS runner
-WORKDIR /app
+# Expose development port (Vite default is 5173)
+EXPOSE 5173
 
-ENV NODE_ENV=production
-ENV PORT=3000
+# Set development environment
+ENV NODE_ENV=development
+ENV PORT=5173
 
-# Install serve to serve static files
-RUN npm install -g serve
-
-# Copy built application from builder stage
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
-
-# Create a simple startup script
-RUN echo '#!/bin/sh' > start.sh && \
-    echo 'echo "Starting static file server on port $PORT"' >> start.sh && \
-    echo 'serve -s dist -l $PORT' >> start.sh && \
-    chmod +x start.sh
-
-# Add health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost:$PORT/ || exit 1
-
-EXPOSE 3000
-CMD ["./start.sh"]
+# Start Vite development server with host binding for container access
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
